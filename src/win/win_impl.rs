@@ -49,8 +49,8 @@ impl MouseControllable for Enigo {
     fn mouse_move_to(&mut self, x: i32, y: i32) {
         let left = unsafe {GetSystemMetrics(76)};
         let top = unsafe{GetSystemMetrics(77)};
-        let cordx = x-left;
-        let cordy = y-top;
+        let mut cordx = x-left;
+        let mut cordy = y-top;
         if cordx < 0 {
             cordx = cordx -1;
         } else {
