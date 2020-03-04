@@ -51,8 +51,8 @@ impl MouseControllable for Enigo {
         mouse_event(
             MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE,
             0,
-            (x - unsafe { GetSystemMetrics(76) } * 65536 / unsafe { GetSystemMetrics(78) },
-            (x - unsafe { GetSystemMetrics(77) } * 65536 / unsafe { GetSystemMetrics(79) },
+            (x - unsafe { GetSystemMetrics(76) }) * 65536 / unsafe { GetSystemMetrics(78) },
+            (x - unsafe { GetSystemMetrics(77) }) * 65536 / unsafe { GetSystemMetrics(79) },
         );
     }
 
