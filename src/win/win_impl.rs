@@ -53,7 +53,7 @@ impl MouseControllable for Enigo {
         let t = unsafe { GetSystemMetrics(77) };
         println!("vx: {}, vy: {}, l: {}, t: {}", vx, vy, l, t);
         mouse_event(
-            MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE,
+            MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_VIRTUALDESK,
             0,
             x * 65536 / unsafe { GetSystemMetrics(78) + GetSystemMetrics(76) },
             y * 65536 / unsafe { GetSystemMetrics(79) + GetSystemMetrics(77) },
