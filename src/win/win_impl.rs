@@ -47,11 +47,13 @@ fn keybd_event(flags: u32, vk: u16, scan: u16) {
 
 impl MouseControllable for Enigo {
     fn mouse_move_to(&mut self, x: i32, y: i32) {
+        let left = GetSystemMetrics(76);
+        let top = GetSystemMetrics(77)
         mouse_event(
             MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE,
             0,
-            x  * 65536 / unsafe { GetSystemMetrics(78) },
-            y  * 65536 / unsafe { GetSystemMetrics(79) },
+            ((65536 * (x - left) / unsafe { GetSystemMetrics(78) }) + (if x-left < 0 {-1} else {1})),
+            ((65536 * (y - top) / unsafe { GetSystemMetrics(79) }) + (if y-top < 0 {-1} else {1}),
         );
     }
 
