@@ -47,25 +47,11 @@ fn keybd_event(flags: u32, vk: u16, scan: u16) {
 
 impl MouseControllable for Enigo {
     fn mouse_move_to(&mut self, x: i32, y: i32) {
-        let left = unsafe {GetSystemMetrics(76)};
-        let top = unsafe{GetSystemMetrics(77)};
-        let mut cordx = x-left;
-        let mut cordy = y-top;
-        if cordx < 0 {
-            cordx = cordx -1;
-        } else {
-            cordx = cordx + 1;
-        }
-         if cordy < 0 {
-            cordy = cordy -1;
-        } else {
-            cordy = cordy + 1;
-        }
         mouse_event(
             MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE,
             0,
-            (65536 * (cordx) / unsafe { GetSystemMetrics(78) }),
-            (65536 * (cordy) / unsafe { GetSystemMetrics(79) }),
+            x * 65536 / unsafe { GetSystemMetrics(78) }),
+            y * 65536 / unsafe { GetSystemMetrics(79) }),
         );
     }
 
