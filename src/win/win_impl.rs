@@ -47,6 +47,11 @@ fn keybd_event(flags: u32, vk: u16, scan: u16) {
 
 impl MouseControllable for Enigo {
     fn mouse_move_to(&mut self, x: i32, y: i32) {
+        let vx = unsafe { GetSystemMetrics(78) };
+        let vy = unsafe { GetSystemMetrics(79) };
+        let t = unsafe { GetSystemMetrics(76) };
+        let l = unsafe { GetSystemMetrics(77) };
+        println!("vx: {}, vy: {}, t: {}, l {}", vx, vy, t, l);
         mouse_event(
             MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE,
             0,
