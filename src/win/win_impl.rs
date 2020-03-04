@@ -49,14 +49,14 @@ impl MouseControllable for Enigo {
     fn mouse_move_to(&mut self, x: i32, y: i32) {
         let vx = unsafe { GetSystemMetrics(78) };
         let vy = unsafe { GetSystemMetrics(79) };
-        let t = unsafe { GetSystemMetrics(76) };
-        let l = unsafe { GetSystemMetrics(77) };
-        println!("vx: {}, vy: {}, t: {}, l {}", vx, vy, t, l);
+        let l = unsafe { GetSystemMetrics(76) };
+        let t = unsafe { GetSystemMetrics(77) };
+        println!("vx: {}, vy: {}, l: {}, t: {}", vx, vy, l, t);
         mouse_event(
             MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE,
             0,
-            x * 65535 / unsafe { GetSystemMetrics(78) + GetSystemMetrics(76) },
-            y * 65535 / unsafe { GetSystemMetrics(79) + GetSystemMetrics(77) },
+            x * 65536 / unsafe { GetSystemMetrics(78) + GetSystemMetrics(76) },
+            y * 65536 / unsafe { GetSystemMetrics(79) + GetSystemMetrics(77) },
         );
     }
 
